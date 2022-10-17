@@ -1,16 +1,12 @@
-import { ICoreFactory } from "../../core.interfaces";
+import { ICore } from "../../core.interfaces";
 
-export class Database implements ICoreFactory {
+export class DataBase implements ICore {
 
-    start(configuration?: any) {
-        console.log("[Database] - Inicializando Conexão com o Banco de dados!")
-
+    public start(): void {
+        console.log(`[DATABASE] - Inicializando Conexão!`)
     }
 
-    stop(configuration?: any) {
-        console.log("[Database] - Encerrando Conexão com o Banco de dados!")
-
+    public stop(): void {
+        console.log(`[DATABASE] - Encerrando Conxeão!`)
     }
-
-
 }

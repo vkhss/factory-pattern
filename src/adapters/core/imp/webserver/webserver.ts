@@ -1,13 +1,12 @@
-import { ICoreFactory } from "../../core.interfaces";
+import { ICore } from "../../core.interfaces";
 
-export class Webserver implements ICoreFactory {
+export class WebServer implements ICore {
 
-    start(configuration?: any) {
-        console.log("[Webserver] - Inicializando Conexão com o Webserver!")
+    public start(): void {
+        console.log(`[WEBSERVER] - Inicializando Conexão!`)
     }
 
-    stop(configuration?: any) {
-        console.log("[Webserver] - Finalizando Conexão com o Webserver!")
+    public stop(): void {
+        console.log(`[WEBSERVER] - Encerrando Conxeão!`)
     }
-
 }

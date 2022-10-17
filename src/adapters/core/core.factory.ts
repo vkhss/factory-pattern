@@ -1,44 +1,39 @@
-import { ICoreFactory } from "./core.interfaces";
-import { Database } from "./imp/database/database";
-import { Webserver } from "./imp/webserver/webserver";
+import { ICore } from "./core.interfaces";
+
+export abstract class CoreFactory {
+    //Factory Method
+    abstract getInstance(): ICore
+
+    start(): ICore {
+        const service = this.getInstance();
+        service.start()
+        return service
+    }
 
 
-export class CoreFactoryInstances {
-
-    private static instances: ICoreFactory[];
-    public static getInstances(): ICoreFactory[] {
-        if (!this.instances) {
-            this.instances = [
-                new Database(),
-                new Webserver()
-            ]
-        }
-        return this.instances
+    stop(): ICore {
+        const service = this.getInstance();
+        service.stop()
+        return service
     }
 }
 
 
-export class CreateCoreFactory implements ICoreFactory {
-    private adapters: ICoreFactory[] = CoreFactoryInstances.getInstances();
+// import { DataBaseFactory } from "./imp/database/database-factory";
+// import { WebServerFactory } from "./imp/webserver/webserver-factory";
 
-    private static instance: CreateCoreFactory;
+// export class CoreFactoryInstances {
 
-    public static getInstance(): CreateCoreFactory {
-        if (!this.instance) {
-            this.instance = new CreateCoreFactory();
-        }
-        return this.instance;
-    }
+//     private static instances: ICore[];
+//     public static getInstances(): ICore[] {
 
-    start(configuration?: any): void {
-        this.adapters.forEach((service) => {
-            service.start();
-        });
-    }
+//         if (!this.instances) {
+//             this.instances = [
+//                 new DataBaseFactory(),
+//                 new WebServerFactory()
 
-    stop(configuration?: any): void {
-        this.adapters.forEach((service) => {
-            service.stop();
-        });
-    }
-}
+//             ]
+//         }
+//         return this.instances
+//     }
+// }
